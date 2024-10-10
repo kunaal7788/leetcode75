@@ -1,0 +1,37 @@
+Approach 1-Brute Force
+Time complexity: O(n^2)
+Space complexity: O(1)
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        max_avg = float('-inf')
+        n =len(nums)
+
+        for i in range(n):
+            sum = 0
+            count = 0
+
+            for j in range(i , i+k):
+                if j<n :
+                    sum += nums[j]
+                    count+= 1
+            if count == k:
+                avg = sum/k
+                max_avg = max(avg, max_avg)
+        return max_avg  
+
+
+     
+Approach 2 - Sliding Window
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+class Solution:
+def findMaxAverage(self, nums: list[int], k:int) -> float:
+	currSum = maxSum = sum(nums[:k])
+	for i in range(k, len(nums)):
+		currSum += nums[i]
+		currSum -= nums[i-k]
+		maxSum = max(maxSum,currSum)
+	return maxSum/k
+
