@@ -1,0 +1,33 @@
+"""Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+ 
+
+Example 1:
+
+Input: arr = [1,2,2,1,1,3]
+Output: true
+Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+Example 2:
+
+Input: arr = [1,2]
+Output: false
+Example 3:
+
+Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+Output: true
+"""
+
+from collections import Counter
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        #we are using Counter which counts the occurances in the array and store it in count as a dictionary 
+        count = Counter(arr)
+        #extract the count values by using list
+        occurances = list(count.values())
+        #using a set to remove duplicates
+        unique_occurances = set(occurances)
+        #now check if the occurances and unique occurances have same length or not
+        if len(occurances) == len(unique_occurances):
+            return True
+        else:
+            return False
